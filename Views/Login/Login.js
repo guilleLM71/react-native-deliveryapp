@@ -1,8 +1,70 @@
-import React from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Button, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import { Stack, TextInput, IconButton } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import axios from "axios";
+import { actionTypes } from '../../reducer/reducer';
+import { useStateValue } from '../../context/StateProvider';
 function Login({navigation}) {
+  const [{user},dispatch]=useStateValue()
+  const [datos, setDatos]=useState(
+    {
+      email:"",
+      contraseña:"",
+      vercontraseña:true,
+      
+    }
+  )
+  const [datauser,setDatauser]=useState({
+    nombre:"",
+    apellido:"",
+    telefono:"",
+    email:"",
+    imagen:"",
+    notification_token: "",
+    rol_id:0,
+  })
+  useEffect(()=>{
+   //console.log('datauser :>> ', datauser);
+   //console.log('datos :>> ', datos);
+  },[])
+
+  async function login(){
+    const options = {
+      method: 'POST',
+      url: 'http://192.168.0.15:4000/api/login',
+      headers: {'Content-Type': 'application/json'},
+      data: {email:datos.email,
+        contraseña:datos.contraseña}
+    };
+    await axios(options)
+    .then((response)=>{
+      dispatch(
+        {
+          type:actionTypes.set_user,
+          user:response.data.user
+        }
+        )
+        dispatch(
+          {
+            type:actionTypes.set_token,
+            token:response.data.token
+          }
+          )
+      const res= response.data.user
+      res.rol_id== 1? navigation.navigate('AdminPag'): 
+      res.rol_id== 2? navigation.navigate('ClientePag'):
+      res.rol_id== 3? navigation.navigate('DeliveryPag' ):null
+      //setDatauser({...res})
+      //console.log('response :>> ', request.data);
+      //console.log('user :>> ', datauser);
+    })
+    .catch((error) => {
+      // Handle any errors that occur
+      console.error(error);
+  });
+    
+  } 
   return (
     <View style={styles.containerroot}>
       <View style={styles.header}>
@@ -12,19 +74,21 @@ function Login({navigation}) {
         <View style={styles.containerform}>
         <Text style={styles.titulo2}>Email</Text>
           <TextInput 
-          
-           style={styles.inputsform}
-            
+         
+        
+            style={styles.inputsform}
+            onChangeText={(val)=>{setDatos({...datos,["email"]:val})}}
             leading={(props) => <Icon name="account" {...props} />}
           />
           <Text style={styles.titulo2}>Contraseña</Text>
           <TextInput
-          
+            secureTextEntry={datos.vercontraseña}
             style={styles.inputsform}
-          
+            onChangeText={(val)=>{setDatos({...datos,["contraseña"]:val})}}
             variant="outlined"
             trailing={(props) => (
               <IconButton
+              onPress={()=>{setDatos({...datos,["vercontraseña"]:!datos.vercontraseña})}}
                 icon={(props) => <Icon name="eye" {...props} />}
                 {...props}
               />
@@ -42,7 +106,13 @@ function Login({navigation}) {
        
         <View style={styles.containerchild}>
 
-        <TouchableOpacity   style={styles.btn} >
+        <TouchableOpacity   style={styles.btn}
+        
+        onPress={()=>
+        {
+            login();
+            
+        }}>
            <Text style={styles.text}>Iniciar Sesion</Text> 
         </TouchableOpacity>
 
