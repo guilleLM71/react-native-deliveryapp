@@ -35,7 +35,7 @@ function CambiarContraseña({navigation,props}) {
       async function cambiarContraseña(){
         const options = {
           method: 'PUT',
-          url: 'http://192.168.0.15:4000/api/cambiarcontras',
+          url: 'http://192.168.0.7:4000/api/cambiarcontras',
           headers: {'Content-Type': 'application/json',
                     'xx-token': token },
           data: {

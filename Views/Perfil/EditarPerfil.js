@@ -33,7 +33,7 @@ function EditarPerfil({navigation,props}) {
       async function editarperfil(){
         const options = {
           method: 'PUT',
-          url: 'http://192.168.0.15:4000/api/editarperfil',
+          url: 'http://192.168.0.7:4000/api/editarperfil',
           headers: {'Content-Type': 'application/json',
                     'xx-token': token },
           data: {

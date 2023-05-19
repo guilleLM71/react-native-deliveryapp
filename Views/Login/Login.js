@@ -9,8 +9,9 @@ function Login({navigation}) {
   const [{user},dispatch]=useStateValue()
   const [datos, setDatos]=useState(
     {
-      email:"",
-      contraseña:"",
+      email:"user@user.com",
+      //email:"admin@admin.com",
+      contraseña:"123456",
       vercontraseña:true,
       
     }
@@ -32,7 +33,7 @@ function Login({navigation}) {
   async function login(){
     const options = {
       method: 'POST',
-      url: 'http://192.168.0.15:4000/api/login',
+      url: 'http://192.168.0.7:4000/api/login',
       headers: {'Content-Type': 'application/json'},
       data: {email:datos.email,
         contraseña:datos.contraseña}

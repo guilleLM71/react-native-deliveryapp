@@ -1,11 +1,14 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import { useStateValue } from "../../context/StateProvider";
 function AdminPag({navigation,props}) {
+  const [{user},dispatch]=useStateValue()
   return (
  
     <View style={styles.containerroot}>
-      <Text style={styles.titulo1}>Admin</Text>
+      <Text style={styles.titulo1}>{user.nombre +" "+ user.apellido}</Text>
+      <Text style={styles.titulo2}>{user.email}</Text>
       <Text style={styles.textsignup1}>Cuenta</Text>
       <View style={styles.containerchild}>
       
@@ -46,7 +49,10 @@ function AdminPag({navigation,props}) {
           <Icon name="arrow-right"  size={25} {...props} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btn} >
+          <TouchableOpacity style={styles.btn} 
+           onPress={()=>{
+            navigation.navigate('Productos') 
+          }}>
            <View style={{flex:1, flexDirection:"row", justifyContent:"center", gap:10}}>
            <Icon name="food"  size={25} {...props} />
           <Text style={styles.text}>Productos</Text>
@@ -54,7 +60,12 @@ function AdminPag({navigation,props}) {
           <Icon name="arrow-right"  size={25} {...props} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btn} >
+          <TouchableOpacity style={styles.btn} 
+          onPress={()=>{
+            navigation.navigate('Deliverys') 
+          }}
+          
+          >
            <View style={{flex:1, flexDirection:"row", justifyContent:"center", gap:10}}>
            <Icon name="truck-delivery"  size={25} {...props} />
           <Text style={styles.text}>Deliverys</Text>
@@ -62,7 +73,11 @@ function AdminPag({navigation,props}) {
           <Icon name="arrow-right"  size={25} {...props} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btn} >
+          <TouchableOpacity style={styles.btn} 
+          onPress={()=>{
+            navigation.navigate('Ordenes') 
+          }}
+          >
            <View style={{flex:1, flexDirection:"row", justifyContent:"center", gap:10}}>
            <Icon name="note"  size={25} {...props} />
           <Text style={styles.text}>Ordenes</Text>
@@ -114,13 +129,13 @@ const styles = StyleSheet.create({
     },
   
     titulo1: {
-      marginTop: 80,
+      marginTop: 15,
       color: "black",
       fontWeight: "bold",
       fontSize: 30,
     },
     titulo2: {
-      marginTop: 5,
+      marginTop: 3,
       color: "grey",
       fontWeight: "bold",
       fontSize: 15,

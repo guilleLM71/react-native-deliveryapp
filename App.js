@@ -11,7 +11,8 @@ import {
   View,
 } from "react-native";
 import imagen from './assets/favicon.png'
-
+import { IconComponentProvider} from "@react-native-material/core";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { NavigationContainer, TabRouter } from "@react-navigation/native";
 import Intro from "./Views/Intro/Intro";
@@ -21,11 +22,16 @@ import { StateProvider } from './context/StateProvider';
 import reducer, { initialState } from './reducer/reducer';
 import AdminPag from "./Views/Admin/AdminPag";
 import ClientePag from "./Views/Cliente/ClientePag";
-import DeliveryPag from "./Views/Delivery/DeliveryPag";
 import EditarPerfil from "./Views/Perfil/EditarPerfil";
 import CambiarContraseña from "./Views/Perfil/CambiarContraseña";
 import Categorias from "./Views/Admin/Categoria/Categorias";
 import AgregarCategoria from "./Views/Admin/Categoria/AgregarCategoria";
+import Productos from "./Views/Admin/Productos/Productos";
+import AgregarProductos from "./Views/Admin/Productos/AgregarProductos";
+import Deliverys from "./Views/Admin/Deliverys/Deliverys";
+import AgregarDeliverys from "./Views/Admin/Deliverys/AgregarDeliverys";
+import OrdenesPag from "./Views/Admin/OrdenesAdmin/OrdenesPag";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -53,6 +59,9 @@ export default function App() {
 
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
+    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+
+ 
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
@@ -81,10 +90,18 @@ export default function App() {
         options={{ headerShown: false }}
       />
         <Stack.Screen
-        name="DeliveryPag"
-        component={DeliveryPag}
+        name="Deliverys"
+        component={Deliverys}
         options={{ headerShown: false }}
       />
+
+<Stack.Screen
+        name="AgregarDeliverys"
+        component={AgregarDeliverys}
+        options={{ headerShown: false }}
+      />
+
+
          <Stack.Screen
         name="EditarPerfil"
         component={EditarPerfil}
@@ -109,9 +126,27 @@ export default function App() {
         component={AgregarCategoria}
         options={{ headerShown: false }}
       />
-     
+     <Stack.Screen
+        name="Productos"
+        component={Productos}
+        options={{ headerShown: false }}
+      />
+
+        <Stack.Screen
+        name="AgregarProductos"
+        component={AgregarProductos}
+        options={{ headerShown: false }}
+      />
+
+
+      <Stack.Screen
+        name="Ordenes"
+        component={OrdenesPag}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
-  </NavigationContainer>
+      </NavigationContainer>
+      </IconComponentProvider>
   </StateProvider>
   );
 }
