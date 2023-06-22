@@ -14,7 +14,7 @@ function Deliverys({ navigation, props }) {
   async function getdeliverys() {
     const options = {
       method: "GET",
-      url: "http://192.168.0.7:4000/api/getdeliverys",
+      url: "http://192.168.0.10:4000/api/getdeliverys",
       headers: { "Content-Type": "application/json", "xx-token": token },
     };
     await axios(options)
@@ -38,7 +38,7 @@ function Deliverys({ navigation, props }) {
     
  const options = {
       method: "DELETE",
-      url: "http://192.168.0.7:4000/api/borrardelivery/"+idDelivery,
+      url: "http://192.168.0.10:4000/api/borrardelivery/"+idDelivery,
       headers: { "Content-Type": "application/json", "xx-token": token },
     };
     await axios(options)

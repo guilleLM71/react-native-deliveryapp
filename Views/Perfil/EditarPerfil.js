@@ -14,6 +14,7 @@ function EditarPerfil({navigation,props}) {
           apellido:user.apellido,
           telefono:user.telefono,
           email:user.email,
+          rol:user.rol_id,
           contraseña:"",
           vercontraseña:true,
           ccontraseña:"",
@@ -59,7 +60,11 @@ function EditarPerfil({navigation,props}) {
     return (
         <Fragment>
         <Appbar.Header>
-        <Appbar.BackAction onPress={() => { navigation.navigate('AdminPag')}} />
+        <Appbar.BackAction 
+        onPress={() => { 
+          datos.rol== 1? navigation.navigate('AdminPag'): 
+          datos.rol== 2? navigation.navigate('IntroNav'):
+          datos.rol== 3? navigation.navigate('DeliveryPag' ):null}} />
         <Appbar.Content title="Configuracion" />
         <Appbar.Action icon="content-save-edit" size={25} onPress={editarperfil} />
       </Appbar.Header>

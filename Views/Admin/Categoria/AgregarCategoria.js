@@ -26,7 +26,7 @@ function AgregarCategoria({navigation,props,route}) {
       async function agregarcategoria() {
         const options = {
             method: 'POST',
-            url: 'http://192.168.0.7:4000/api/addcategorias',
+            url: 'http://192.168.0.10:4000/api/addcategorias',
             headers: {'Content-Type': 'application/json',
                         'xx-token':token},
             data: JSON.stringify({

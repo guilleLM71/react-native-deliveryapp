@@ -32,7 +32,7 @@ function Registrar({navigation}) {
   async function registrar(){
     const options = {
       method: 'POST',
-      url: 'http://192.168.0.7:4000/api/registracliente',
+      url: 'http://192.168.0.10:4000/api/registracliente',
       headers: {'Content-Type': 'application/json'},
       data: JSON.stringify({
         nombre: datos.nombre,

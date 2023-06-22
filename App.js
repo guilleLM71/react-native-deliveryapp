@@ -31,6 +31,8 @@ import AgregarProductos from "./Views/Admin/Productos/AgregarProductos";
 import Deliverys from "./Views/Admin/Deliverys/Deliverys";
 import AgregarDeliverys from "./Views/Admin/Deliverys/AgregarDeliverys";
 import OrdenesPag from "./Views/Admin/OrdenesAdmin/OrdenesPag";
+import IntroNav from "./Views/Cliente/IntroNav";
+import DetalleProducto from "./Views/Cliente/DetalleProducto";
 
 const Stack = createNativeStackNavigator();
 
@@ -89,6 +91,12 @@ export default function App() {
         component={ClientePag}
         options={{ headerShown: false }}
       />
+
+        <Stack.Screen
+        name="IntroNav"
+        component={IntroNav}
+        options={{ headerShown: false }}
+      />
         <Stack.Screen
         name="Deliverys"
         component={Deliverys}
@@ -142,6 +150,11 @@ export default function App() {
       <Stack.Screen
         name="Ordenes"
         component={OrdenesPag}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="DetalleProducto"
+        component={DetalleProducto}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

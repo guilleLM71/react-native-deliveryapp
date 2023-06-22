@@ -14,7 +14,7 @@ function Productos({ navigation, props }) {
   async function getproductos() {
     const options = {
       method: "GET",
-      url: "http://192.168.0.7:4000/api/listproductosadmin",
+      url: "http://192.168.0.10:4000/api/listproductosadmin",
       headers: { "Content-Type": "application/json", "xx-token": token },
     };
     await axios(options)
@@ -38,7 +38,7 @@ function Productos({ navigation, props }) {
     
  const options = {
       method: "DELETE",
-      url: "http://192.168.0.7:4000/api/borrarProducto/"+idproducto,
+      url: "http://192.168.0.10:4000/api/borrarProducto/"+idproducto,
       headers: { "Content-Type": "application/json", "xx-token": token },
     };
     await axios(options)
@@ -78,7 +78,7 @@ function Productos({ navigation, props }) {
         return (
           <View style={styles.cardproducto} key={producto.id}>
             <Image
-              source={{ uri: "http://192.168.0.7:4000/" + producto.imagen }}
+              source={{ uri: "http://192.168.0.10:4000/" + producto.imagen }}
               style={{
                 width: 100,
                 height: 100,

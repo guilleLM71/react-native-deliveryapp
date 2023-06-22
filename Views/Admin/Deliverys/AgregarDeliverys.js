@@ -113,7 +113,7 @@ function AgregarDeliverys({ navigation, props, route }) {
 */ 
  const options = {
   method: 'POST',
-  url: 'http://192.168.0.7:4000/api/registrardelivery',
+  url: 'http://192.168.0.10:4000/api/registrardelivery',
   headers: {'Content-Type': 'application/json',
               'xx-token':token},
   data: JSON.stringify({

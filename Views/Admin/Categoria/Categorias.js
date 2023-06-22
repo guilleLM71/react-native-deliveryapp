@@ -15,7 +15,7 @@ function Categorias({navigation, props}) {
 
         const options = {
             method: 'GET',
-            url: 'http://192.168.0.7:4000/api/getcategorias',
+            url: 'http://192.168.0.10:4000/api/getcategorias',
             headers: {'Content-Type': 'application/json',
                       'xx-token': token },
            

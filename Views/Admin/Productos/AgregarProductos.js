@@ -71,7 +71,7 @@ function AgregarProductos({ navigation, props, route }) {
 
         const options = {
             method: 'GET',
-            url: 'http://192.168.0.7:4000/api/getcategorias',
+            url: 'http://192.168.0.10:4000/api/getcategorias',
             headers: {'Content-Type': 'application/json',
                       'xx-token': token },
            
@@ -155,7 +155,7 @@ function AgregarProductos({ navigation, props, route }) {
     };
     //console.log('options :>> ', options);
     await axios
-      .post(`http://192.168.0.7:4000/api/addproductos`, form, options)
+      .post(`http://192.168.0.10:4000/api/addproductos`, form, options)
       .then((res) => {
         //console.log('res :>> ', res);
       });

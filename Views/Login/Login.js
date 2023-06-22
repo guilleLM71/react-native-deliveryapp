@@ -33,7 +33,7 @@ function Login({navigation}) {
   async function login(){
     const options = {
       method: 'POST',
-      url: 'http://192.168.0.7:4000/api/login',
+      url: 'http://192.168.0.10:4000/api/login',
       headers: {'Content-Type': 'application/json'},
       data: {email:datos.email,
         contraseña:datos.contraseña}
@@ -54,7 +54,7 @@ function Login({navigation}) {
           )
       const res= response.data.user
       res.rol_id== 1? navigation.navigate('AdminPag'): 
-      res.rol_id== 2? navigation.navigate('ClientePag'):
+      res.rol_id== 2? navigation.navigate('IntroNav'):
       res.rol_id== 3? navigation.navigate('DeliveryPag' ):null
       //setDatauser({...res})
       //console.log('response :>> ', request.data);
